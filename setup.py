@@ -11,7 +11,7 @@ setuptools.setup(
     description='Python\'s http.server extended to include a file upload page',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    url='https://github.com/Densaugeo/uploadserver',
+    url='https://github.com/1lyasam/uploadserver',
     packages=setuptools.find_packages(),
     classifiers=[
         'Programming Language :: Python :: 3',
