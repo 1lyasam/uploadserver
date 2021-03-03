@@ -3,7 +3,7 @@ import http.server, cgi, pathlib
 upload_page = bytes('''<!DOCTYPE html>
 <html>
 <head>
-<title>File Upload</title>
+<title>File Test</title>
 <meta name="viewport" content="width=device-width, user-scalable=no" />
 <style type="text/css">
 @media (prefers-color-scheme: dark) {
@@ -15,8 +15,8 @@ upload_page = bytes('''<!DOCTYPE html>
 </style>
 </head>
 <body>
-<h1>File Upload</h1>
-<form action="upload" method="POST" enctype="multipart/form-data">
+<h1>File Test</h1>
+<form action="test" method="POST" enctype="multipart/form-data">
 <input name="file_1" type="file" />
 <br />
 <br />
@@ -41,22 +41,22 @@ def receive_upload(handler):
 
 class SimpleHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def do_GET(self):
-        if self.path == '/upload': send_upload_page(self)
+        if self.path == '/test': send_upload_page(self)
         else: http.server.SimpleHTTPRequestHandler.do_GET(self)
     
     def do_POST(self):
-        if self.path == '/upload':
+        if self.path == '/test':
             receive_upload(self)
             send_upload_page(self)
-        else: self.send_error(http.HTTPStatus.NOT_FOUND, "Can only POST to /upload")
+        else: self.send_error(http.HTTPStatus.NOT_FOUND, "Can only POST to /test")
 
 class CGIHTTPRequestHandler(http.server.CGIHTTPRequestHandler):
     def do_GET(self):
-        if self.path == '/upload': send_upload_page(self)
+        if self.path == '/test': send_upload_page(self)
         else: http.server.CGIHTTPRequestHandler.do_GET(self)
     
     def do_POST(self):
-        if self.path == '/upload':
+        if self.path == '/test':
             receive_upload(self)
             send_upload_page(self)
         else: http.server.CGIHTTPRequestHandler.do_POST(self)
